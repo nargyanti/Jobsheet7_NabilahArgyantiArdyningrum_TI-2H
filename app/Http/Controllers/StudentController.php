@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
@@ -86,7 +87,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $Nim)
     {
         // validate
         $request->validate([
@@ -97,7 +98,7 @@ class StudentController extends Controller
         ]);
 
         // update data
-        Student:find($Nim)->update($request->all());
+        Student::find($Nim)->update($request->all());
 
         // redirect after add data
         return redirect()->route('student.index')
