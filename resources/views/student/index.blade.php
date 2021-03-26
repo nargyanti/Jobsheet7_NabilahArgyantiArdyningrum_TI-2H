@@ -24,6 +24,8 @@
         <th>Name</th>
         <th>Class</th>
         <th>Major</th>
+        <th>Date of Birth</th>
+        <th>Address</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($student as $mhs)
@@ -32,6 +34,8 @@
         <td>{{ $mhs ->name }}</td>
         <td>{{ $mhs ->class }}</td>
         <td>{{ $mhs ->major }}</td>
+        <td>{{ $mhs ->date_of_birth }}</td>
+        <td>{{ $mhs ->address }}</td>
         <td>
         <form action="{{ route('student.destroy',['student'=>$mhs->nim]) }}" method="POST">
             <a class="btn btn-info" href="{{ route('student.show',$mhs->nim) }}">Show</a>

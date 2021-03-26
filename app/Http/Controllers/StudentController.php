@@ -44,6 +44,8 @@ class StudentController extends Controller
             'Name' => 'required',
             'Class' => 'required',
             'Major' => 'required',
+            'Date_Of_Birth' => 'required',
+            'Address' => 'required',
         ]);
 
         // add data
@@ -95,6 +97,8 @@ class StudentController extends Controller
             'Name' => 'required',
             'Class' => 'required',
             'Major' => 'required',
+            'Date_Of_Birth' => 'required',
+            'Address' => 'required',
         ]);
 
         // update data
