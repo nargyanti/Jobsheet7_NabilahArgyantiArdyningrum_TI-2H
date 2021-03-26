@@ -16,7 +16,7 @@ class StudentController extends Controller
     public function index()
     {
         // eloquent for display data
-        $student = DB::table('student')->get();
+        $student = DB::table('student')->paginate(3);
         return view('student.index', compact('student'));
     }
 

@@ -50,4 +50,7 @@
     </tr>
     @endforeach
     </table>
+    <div class="d-flex">
+        {{ $student->links('pagination::bootstrap-4') }}
+    </div>
 @endsection
