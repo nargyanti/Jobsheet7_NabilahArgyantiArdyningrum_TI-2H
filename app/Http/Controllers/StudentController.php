@@ -13,11 +13,21 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // eloquent for display data
-        $student = DB::table('student')->paginate(3);
-        return view('student.index', compact('student'));
+        // $student = DB::table('student')->paginate(3);
+        // return view('student.index', compact('student'));
+        $student =  Student::where([
+            ['name', '!=', Null],
+            [function ($query) use ($request) {
+                if(($name = $request->name)) {
+                    $query->orWhere('name', 'LIKE', "%{$name}%")->get();
+                }
+            }]
+        ])
+            ->paginate(3);
+            return view('student.index', compact('student'));
     }
 
     /**
@@ -122,4 +132,5 @@ class StudentController extends Controller
         return redirect()->route('student.index')
             ->with('success', 'Student Successfully Deleted');
     }
+
 }
