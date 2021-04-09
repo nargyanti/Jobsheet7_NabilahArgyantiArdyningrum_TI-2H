@@ -10,7 +10,7 @@
                 <a class="btn btn-success" href="{{ route('student.create') }}"> Input Student Data</a>
             </div>            
             <form class="form-inline" action="{{ route('student.index') }}" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="name" aria-label="Search" style="width:500px">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search" style="width:500px">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -36,7 +36,7 @@
     <tr>
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->name }}</td>
-        <td>{{ $mhs ->class }}</td>
+        <td>{{ $mhs ->class->class_name }}</td>
         <td>{{ $mhs ->major }}</td>
         <td>{{ $mhs ->date_of_birth }}</td>
         <td>{{ $mhs ->address }}</td>

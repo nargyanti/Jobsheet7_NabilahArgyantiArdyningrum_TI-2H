@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\ClassModel;
 
 class StudentController extends Controller
 {
@@ -18,16 +19,28 @@ class StudentController extends Controller
         // eloquent for display data
         // $student = DB::table('student')->paginate(3);
         // return view('student.index', compact('student'));
-        $student =  Student::where([
-            ['name', '!=', Null],
-            [function ($query) use ($request) {
-                if(($name = $request->name)) {
-                    $query->orWhere('name', 'LIKE', "%{$name}%")->get();
-                }
-            }]
-        ])
-            ->paginate(3);
-            return view('student.index', compact('student'));
+        
+        // $student =  Student::where([
+        //     ['name', '!=', Null],
+        //     [function ($query) use ($request) {
+        //         if(($name = $request->name)) {
+        //             $query->orWhere('name', 'LIKE', "%{$name}%")->get();
+        //         }
+        //     }]
+        // ])
+        //     ->paginate(3);
+        //     return view('student.index', compact('student'));
+
+        $search = request()->query('search');
+        if($search) {
+            $student = Student::with('class')
+                    ->where('name', "like", "%{$search}%")
+                    ->paginate(3);
+        } else {
+            $student = Student::with('class')
+                    ->paginate(3);
+        }
+        return view('student.index', ['student' => $student]);
     }
 
     /**
@@ -37,7 +50,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
+        $class = ClassModel::all(); // get data from class table
+        return view('student.create', ['class' => $class]);
     }
 
     /**
@@ -58,8 +72,19 @@ class StudentController extends Controller
             'Address' => 'required',
         ]);
 
-        // add data
-        Student::create($request->all());
+        $student = new Student;
+        $student->nim = $request->get('Nim');
+        $student->name = $request->get('Name');
+        $student->major = $request->get('Major');
+        $student->date_of_birth = $request->get('Date_Of_Birth');
+        $student->address = $request->get('Address');
+        
+        $class = new ClassModel;
+        $class->id = $request->get('Class');
+
+        // eloquent function to add data using belongsTo relation
+        $student->class()->associate($class);
+        $student->save();
 
         // redirect after add data
         return redirect()->route('student.index')
@@ -75,8 +100,8 @@ class StudentController extends Controller
     public function show($Nim)
     {
         // find by NIM
-        $Student = Student::find($Nim);
-        return view('student.detail', compact('Student'));
+        $student = Student::with('class')->where('nim', $Nim)->first();
+        return view('student.detail', ['Student' => $student]);
     }
 
     /**
@@ -88,8 +113,9 @@ class StudentController extends Controller
     public function edit($Nim)
     {
         // display by nim
-        $Student = DB::table('student')->where('nim', $Nim)->first();
-        return view('student.edit', compact('Student'));
+        $student = Student::with('class')->where('nim', $Nim)->first();
+        $class = ClassModel::all(); //get data from class table
+        return view('student.edit', compact('student', 'class'));
     }
 
     /**
@@ -111,8 +137,18 @@ class StudentController extends Controller
             'Address' => 'required',
         ]);
 
-        // update data
-        Student::find($Nim)->update($request->all());
+        $student = Student::with('class')->where('nim', $Nim)->first();
+        $student->nim = $request->get('Nim');
+        $student->name = $request->get('Name');
+        $student->major = $request->get('Major');
+        $student->date_of_birth = $request->get('Date_Of_Birth');
+        $student->address = $request->get('Address');
+
+        $class = new ClassModel;
+        $class->id = $request->get('Class');
+
+        $student->class()->associate($class);
+        $student->save();
 
         // redirect after add data
         return redirect()->route('student.index')

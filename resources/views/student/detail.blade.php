@@ -10,7 +10,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>Nim: </b>{{$Student->nim}}</li>
                     <li class="list-group-item"><b>Name: </b>{{$Student->name}}</li>
-                    <li class="list-group-item"><b>Class: </b>{{$Student->class}}</li>
+                    <li class="list-group-item"><b>Class: </b>{{$Student->class->class_name}}</li>
                     <li class="list-group-item"><b>Major: </b>{{$Student->major}}</li>
                     <li class="list-group-item"><b>Date of Birth: </b>{{$Student->date_of_birth}}</li>
                     <li class="list-group-item"><b>Address: </b>{{$Student->address}}</li>

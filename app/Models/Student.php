@@ -10,14 +10,19 @@ use Illuminate\Database\Eloquent\Model; //Model Eloquent
 
 class Student extends Model
 {
-    protected $table = 'student';
+    protected $table = 'student'; 
     protected $primaryKey = 'nim';    
     protected $fillable = [
-        'Nim',
-        'Name',
-        'Class',
-        'Major',
+        'nim',
+        'name',
+        'class_id',
+        'major',
         'Date_Of_Birth',
         'Address',
     ];
+
+    public function class() 
+    {
+        return $this->belongsTo(ClassModel::class);
+    }
 }
