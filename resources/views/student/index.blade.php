@@ -44,11 +44,13 @@
         <form action="{{ route('student.destroy',['student'=>$mhs->nim]) }}" method="POST">
             <a class="btn btn-info" href="{{ route('student.show',$mhs->nim) }}">Show</a>
             <a class="btn btn-primary" href="{{ route('student.edit',$mhs->nim) }}">Edit</a>
+            
        
             @csrf
             @method('DELETE')
             
             <button type="submit" class="btn btn-danger">Delete</button>
+            <a class="btn btn-warning" href="#">Score</a>
         </form>
         </td>
     </tr>

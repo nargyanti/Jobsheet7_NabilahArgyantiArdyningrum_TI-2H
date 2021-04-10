@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CourseSeeder extends Seeder
 {
@@ -39,5 +40,8 @@ class CourseSeeder extends Seeder
                 'semester' => 4,
             ],
         ];
+
+        DB::table('course')->insert($course);
+
     }
 }

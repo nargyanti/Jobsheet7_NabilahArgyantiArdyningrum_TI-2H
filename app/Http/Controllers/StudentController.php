@@ -169,4 +169,16 @@ class StudentController extends Controller
             ->with('success', 'Student Successfully Deleted');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function score($Nim)
+    {
+        //$student = CourseStudent::find(1)->student;
+        //return view('student.score', compact('student'));
+    }
+
 }
