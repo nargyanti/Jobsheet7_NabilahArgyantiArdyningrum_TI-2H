@@ -10,14 +10,4 @@ class CourseStudent extends Model
     use HasFactory;
     protected $table='course_student'; 
 
-    public function student() 
-    {
-        return $this->belongsTo(Student::class);
-    }
-    
-    public function course() 
-    {
-        return $this->belongsTo(Course::class);
-    }
-
 }

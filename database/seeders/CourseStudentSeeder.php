@@ -16,29 +16,34 @@ class CourseStudentSeeder extends Seeder
     {
         $course_student = [
             [
-                'student_id' => 3,
+                'value' => 'A',
+                'student_id' => 1941720083,
                 'course_id' => 3,
-                'value' => 70,
             ],
             [
-                'student_id' => 1,
+                'value' => 'B',
+                'student_id' => 1941720083,
                 'course_id' => 1,
-                'value' => 90,
             ],
             [
-                'student_id' => 1,
-                'course_id' => 3,
-                'value' => 80,
-            ],
-            [
-                'student_id' => 5,
-                'course_id' => 3,
-                'value' => 83,
-            ],
-            [
-                'student_id' => 5,
+                'value' => 'B+',
+                'student_id' => 1941720083,
                 'course_id' => 2,
-                'value' => 89,
+            ],
+            [
+                'value' => 'A',
+                'student_id' => 1941720083,
+                'course_id' => 4,
+            ],
+            [
+                'value' => 'A',
+                'student_id' => 1941720759,
+                'course_id' => 3,
+            ],
+            [
+                'value' => 'B+',
+                'student_id' => 1941720759,
+                'course_id' => 2,
             ],
         ];
 

@@ -175,10 +175,10 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function score($Nim)
+    public function value($Nim)
     {
-        //$student = CourseStudent::find(1)->student;
-        //return view('student.score', compact('student'));
+        $student = Student::with('course')->where('nim', $Nim)->first();
+        return view('student.value', ['Student' => $student]);
     }
 
 }

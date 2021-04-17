@@ -50,7 +50,7 @@
             @method('DELETE')
             
             <button type="submit" class="btn btn-danger">Delete</button>
-            <a class="btn btn-warning" href="#">Score</a>
+            <a class="btn btn-warning" href="{{ route('student.value',$mhs->nim) }}">Value</a>
         </form>
         </td>
     </tr>

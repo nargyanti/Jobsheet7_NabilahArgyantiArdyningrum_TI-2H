@@ -16,3 +16,4 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::resource('student', StudentController::class);
+Route::get('value/{student}', [StudentController::class, 'value'])->name('student.value');

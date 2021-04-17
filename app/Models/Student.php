@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model; //Model Eloquent
+use App\Models\Course;
 
 class Student extends Model
 {
@@ -28,7 +29,7 @@ class Student extends Model
 
     public function course() 
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')->withPivot('value');
     }
 
 }

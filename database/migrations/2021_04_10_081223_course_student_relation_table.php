@@ -14,9 +14,9 @@ class CourseStudentRelationTable extends Migration
     public function up()
     {
         Schema::table('course_student', function (Blueprint $table) {
-            $table->unsignedBigInteger('student_id')->nullable();
+            $table->string('student_id', 10)->nullable();
             $table->unsignedBigInteger('course_id')->nullable();
-            $table->foreign('student_id')->references('id_student')->on('student'); // add foreign key in class_id column
+            $table->foreign('student_id')->references('nim')->on('student'); // add foreign key in class_id column
             $table->foreign('course_id')->references('id')->on('course'); // add foreign key in class_id column
         });
 
