@@ -20,6 +20,7 @@ class Student extends Model
         'major',
         'Date_Of_Birth',
         'Address',
+        'Profile_Picture',
     ];
 
     public function class() 

@@ -7,6 +7,8 @@
         <div class="card" style="width: 24rem;">
             <div class="card-header">Student Detail</div>
             <div class="card-body">
+                <img width="100px" src="{{asset('storage/'.$Student->profile_picture)}}" class="mx-auto d-block">
+                <br>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>Nim: </b>{{$Student->nim}}</li>
                     <li class="list-group-item"><b>Name: </b>{{$Student->name}}</li>
@@ -16,7 +18,7 @@
                     <li class="list-group-item"><b>Address: </b>{{$Student->address}}</li>
                 </ul>
             </div>
-        <a class="btn btn-success mt-3" href="{{ route('student.index') }}">Back</a>
+            <a class="btn btn-success mt-3" href="{{ route('student.index') }}">Back</a>
         </div>
     </div>
 </div>

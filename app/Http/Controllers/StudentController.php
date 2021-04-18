@@ -6,6 +6,8 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\ClassModel;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class StudentController extends Controller
 {
@@ -72,13 +74,18 @@ class StudentController extends Controller
             'Address' => 'required',
         ]);
 
+        if ($request->file('Profile_Picture')) {
+            $image_name = $request->file('Profile_Picture')->store('images', 'public');
+        }
+        
         $student = new Student;
         $student->nim = $request->get('Nim');
         $student->name = $request->get('Name');
         $student->major = $request->get('Major');
         $student->date_of_birth = $request->get('Date_Of_Birth');
         $student->address = $request->get('Address');
-        
+        $student->profile_picture = $image_name;
+
         $class = new ClassModel;
         $class->id = $request->get('Class');
 
@@ -144,6 +151,13 @@ class StudentController extends Controller
         $student->date_of_birth = $request->get('Date_Of_Birth');
         $student->address = $request->get('Address');
 
+        if ($student->profile_picture && file_exists(storage_path('app/public/' . $student->profile_picture))) {
+            Storage::delete('public/' . $student->profile_picture);
+        }
+
+        $image_name = $request->file('Profile_Picture')->store('images', 'public');
+        $student->profile_picture = $image_name;
+
         $class = new ClassModel;
         $class->id = $request->get('Class');
 
@@ -179,6 +193,13 @@ class StudentController extends Controller
     {
         $student = Student::with('course')->where('nim', $Nim)->first();
         return view('student.value', ['Student' => $student]);
+    }
+
+    public function print_pdf($Nim)
+    {
+        $student = Student::with('course')->where('nim', $Nim)->first();
+        $pdf = PDF::loadview('student.value_pdf',['Student'=>$student]);
+        return $pdf->stream();
     }
 
 }

@@ -3,17 +3,13 @@
 @section('content')
 
 <!-- Title -->
-<div class="container">
-    <h2 class="text-center">JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2><br>
-    <h1 class="text-center">KARTU HASIL STUDI (KHS)</h1>
-</div>
+<h2 class="text-center">JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2><br>
+<h1 class="text-center">KARTU HASIL STUDI (KHS)</h1>
 
 <!-- Biodata -->
-<div class="container">
-    <p><b>Name:</b> {{ $Student->name }}</p>
-    <p><b>NIM:</b> {{ $Student->nim }}</p>
-    <p><b>Class:</b> {{ $Student->class->class_name }}</p>
-</div>
+<p><b>Name:</b> {{ $Student->name }}</p>
+<p><b>NIM:</b> {{ $Student->nim }}</p>
+<p><b>Class:</b> {{ $Student->class->class_name }}</p>
 
 <!-- Score -->
 <table class="table table-bordered">
@@ -36,5 +32,7 @@
     @endforeach    
     </tbody>
 </table>
+<br>
+<a class="btn btn-success float-right" href="{{ route('print_pdf', $Student->nim) }}">Print KHS</a>
 
 @endsection

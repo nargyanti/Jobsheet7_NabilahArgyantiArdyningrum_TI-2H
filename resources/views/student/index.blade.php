@@ -30,6 +30,7 @@
         <th>Major</th>
         <th>Date of Birth</th>
         <th>Address</th>
+        <th width="50px">Profile Picture</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($student as $mhs)
@@ -39,7 +40,8 @@
         <td>{{ $mhs ->class->class_name }}</td>
         <td>{{ $mhs ->major }}</td>
         <td>{{ $mhs ->date_of_birth }}</td>
-        <td>{{ $mhs ->address }}</td>
+        <td>{{ $mhs ->address }}</td>        
+        <td><img width="50px" src="{{asset('storage/'.$mhs->profile_picture)}}"></td>
         <td>
         <form action="{{ route('student.destroy',['student'=>$mhs->nim]) }}" method="POST">
             <a class="btn btn-info" href="{{ route('student.show',$mhs->nim) }}">Show</a>
